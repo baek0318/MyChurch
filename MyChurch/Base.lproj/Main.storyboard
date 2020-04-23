@@ -3,7 +3,7 @@
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -64,16 +64,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ttW-y0-6ti">
-                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ttW-y0-6ti">
+                                <rect key="frame" x="0.0" y="140" width="375" height="673"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="673" id="FHo-3D-sQg"/>
+                                    <constraint firstAttribute="width" constant="375" id="nym-2e-7EZ"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="cYU-r1-OiO">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cYU-r1-OiO" id="yEw-MA-Rhk">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -90,13 +93,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IMO-Sc-jr2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4541" y="885"/>
+            <point key="canvasLocation" x="4540" y="884.48275862068965"/>
         </scene>
         <!--홈-->
         <scene sceneID="NvG-8K-TfG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nkp-ia-Ihp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="홈" id="Jaa-sh-zJS"/>
+                    <tabBarItem key="tabBarItem" title="홈" image="house" catalog="system" id="Jaa-sh-zJS"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="28p-Aw-wkL">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -115,7 +118,7 @@
         <scene sceneID="8KD-ZZ-3a2">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eUx-mg-mEr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="설교" id="ieO-nJ-DqB"/>
+                    <tabBarItem key="tabBarItem" title="설교" image="book" catalog="system" id="ieO-nJ-DqB"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kaE-a3-bQu">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -134,7 +137,7 @@
         <scene sceneID="DYh-OU-CaM">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Q1V-T9-kbQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="광고" id="FDO-SA-6Ni"/>
+                    <tabBarItem key="tabBarItem" title="광고" image="doc.text" catalog="system" id="FDO-SA-6Ni"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="m3P-v2-vo8">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -153,7 +156,7 @@
         <scene sceneID="esX-ge-Ozv">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4mJ-yt-zbb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="더 보기" id="N62-BB-XIr"/>
+                    <tabBarItem key="tabBarItem" title="더 보기" image="ellipsis.circle" catalog="system" id="N62-BB-XIr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1wi-mT-F2k">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -190,4 +193,10 @@
             <point key="canvasLocation" x="2855" y="-629"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="book" catalog="system" width="128" height="101"/>
+        <image name="doc.text" catalog="system" width="115" height="128"/>
+        <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
+        <image name="house" catalog="system" width="128" height="110"/>
+    </resources>
 </document>

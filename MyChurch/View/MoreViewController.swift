@@ -13,8 +13,35 @@ class MoreViewController : UIViewController {
     @IBOutlet weak var tableview: UITableView!
     
     override func viewDidLoad() {
-        navigationController?.navigationBar.prefersLargeTitles = true
+        searchDevice()
         navigationItem.largeTitleDisplayMode = .automatic
+    }
+    
+    func searchDevice() {
+        if UIDevice().userInterfaceIdiom == .phone {
+          switch UIScreen.main.nativeBounds.height {
+            case 1136:
+            print("iPhone se")
+            navigationController?.navigationBar.prefersLargeTitles = false
+            case 1334:
+            print("iPhone 6/6S/7/8")
+            navigationController?.navigationBar.prefersLargeTitles = false
+            case 2208:
+            print("iPhone 6+/6S+/7+/8+")
+            navigationController?.navigationBar.prefersLargeTitles = false
+            case 2436:
+            print("iPhone X")
+            navigationController?.navigationBar.prefersLargeTitles = true
+            case 2688:
+            print("iPhone 11pro Max")
+            navigationController?.navigationBar.prefersLargeTitles = true
+            case 1792:
+            print("iPhone 11/Xr")
+            navigationController?.navigationBar.prefersLargeTitles = true
+            default:
+            print("unknown")
+          }
+        }
     }
 }
 

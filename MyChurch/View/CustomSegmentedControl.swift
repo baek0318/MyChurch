@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class CustomSegmentedControl : UIView {
     //필요한 모델들의 변수를 선언하여 준다
     private var buttonTitles : [String]!
@@ -18,8 +17,8 @@ class CustomSegmentedControl : UIView {
     
     //글자의 원래 색과 선택되었을때의 view와 글자의 색상을 바꿔준다
     var textColor : UIColor = .black
-    var selectorViewColor : UIColor = .init(red: CGFloat(0.2), green: CGFloat(0.44), blue: CGFloat(0.878), alpha: 1.0)
-    var selectorTextColor : UIColor = .init(red: CGFloat(0.2), green: CGFloat(0.44), blue: CGFloat(0.878), alpha: 1.0)
+    @IBInspectable var selectorViewColor : UIColor = .init(red: CGFloat(0.2), green: CGFloat(0.44), blue: CGFloat(0.878), alpha: 1.0)
+    @IBInspectable var selectorTextColor : UIColor = .init(red: CGFloat(0.2), green: CGFloat(0.44), blue: CGFloat(0.878), alpha: 1.0)
     
     convenience init(frame: CGRect,buttonTitle:[String]){
         self.init(frame:frame)
@@ -34,15 +33,16 @@ class CustomSegmentedControl : UIView {
         stack.distribution = .fillEqually
         addSubview(stack)
         stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
-        stack.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        stack.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        stack.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        stack.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        stack.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        stack.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
     }
     
     //selectorView 만들어주는 곳
     private func configSelectorView() {
         let selectorWidth = self.frame.width/CGFloat(buttonTitles.count)
-        selectorView = UIView(frame: CGRect(x: 0, y: self.frame.height, width: selectorWidth, height: 2))
+        selectorView = UIView(frame: CGRect(x: 0, y: self.frame.height+10, width: selectorWidth, height: 3))
         selectorView.backgroundColor = selectorViewColor
         addSubview(selectorView)
     }
