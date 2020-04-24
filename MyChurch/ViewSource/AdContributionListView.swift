@@ -1,5 +1,5 @@
 //
-//  SermonSequenceView.swift
+//  AdContributionListView.swift
 //  MyChurch
 //
 //  Created by 백승화 on 2020/04/24.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SermonSequenceView : UIView {
+class AdContributionListView : UIView {
     
     convenience init(frame : CGRect, buttonTitle:[String]){
         self.init()

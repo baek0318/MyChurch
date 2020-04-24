@@ -10,8 +10,13 @@
 		3F129A86B1D1FCB36324EA5B /* Pods_MyChurch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CB0735F5691AE8F496A3AE3 /* Pods_MyChurch.framework */; };
 		C85D5D72E43116DCE5A468E5 /* Pods_MyChurch_MyChurchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7085ABF5B406EE46004C584F /* Pods_MyChurch_MyChurchUITests.framework */; };
 		E8A6E4CA24501CE500F6DEED /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A6E4C924501CE500F6DEED /* CustomSegmentedControl.swift */; };
-		E8EBE35A2451A7A700DE9C43 /* SermonSequenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EBE3592451A7A700DE9C43 /* SermonSequenceView.swift */; };
-		E8EBE35C2451A85A00DE9C43 /* SermonSequence.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8EBE35B2451A85A00DE9C43 /* SermonSequence.xib */; };
+		E8EBE35E245275E000DE9C43 /* SermonTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EBE35D245275E000DE9C43 /* SermonTextView.swift */; };
+		E8EBE36024529E9100DE9C43 /* SermonColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EBE35F24529E9100DE9C43 /* SermonColumnView.swift */; };
+		E8EBE3622452AD2100DE9C43 /* SermonSequenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EBE3612452AD2100DE9C43 /* SermonSequenceView.swift */; };
+		E8EBE3642452B85D00DE9C43 /* AdChurchInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EBE3632452B85D00DE9C43 /* AdChurchInfoView.swift */; };
+		E8EBE3662452B87500DE9C43 /* AdNeighborInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EBE3652452B87500DE9C43 /* AdNeighborInfoView.swift */; };
+		E8EBE3682452B9FF00DE9C43 /* AdContributionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EBE3672452B9FF00DE9C43 /* AdContributionListView.swift */; };
+		E8EBE36A2452BA2000DE9C43 /* AdSupportListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EBE3692452BA2000DE9C43 /* AdSupportListView.swift */; };
 		E8FFBA97244F24F700FE19D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FFBA96244F24F700FE19D0 /* AppDelegate.swift */; };
 		E8FFBA99244F24F700FE19D0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FFBA98244F24F700FE19D0 /* SceneDelegate.swift */; };
 		E8FFBA9E244F24F700FE19D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8FFBA9C244F24F700FE19D0 /* Main.storyboard */; };
@@ -54,8 +59,13 @@
 		A501E66A14C2C72ADC1F05A3 /* Pods-MyChurchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyChurchTests.debug.xcconfig"; path = "Target Support Files/Pods-MyChurchTests/Pods-MyChurchTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C35A677785147CEFC95E8604 /* Pods-MyChurch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyChurch.release.xcconfig"; path = "Target Support Files/Pods-MyChurch/Pods-MyChurch.release.xcconfig"; sourceTree = "<group>"; };
 		E8A6E4C924501CE500F6DEED /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
-		E8EBE3592451A7A700DE9C43 /* SermonSequenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SermonSequenceView.swift; sourceTree = "<group>"; };
-		E8EBE35B2451A85A00DE9C43 /* SermonSequence.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SermonSequence.xib; sourceTree = "<group>"; };
+		E8EBE35D245275E000DE9C43 /* SermonTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SermonTextView.swift; sourceTree = "<group>"; };
+		E8EBE35F24529E9100DE9C43 /* SermonColumnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SermonColumnView.swift; sourceTree = "<group>"; };
+		E8EBE3612452AD2100DE9C43 /* SermonSequenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SermonSequenceView.swift; sourceTree = "<group>"; };
+		E8EBE3632452B85D00DE9C43 /* AdChurchInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdChurchInfoView.swift; sourceTree = "<group>"; };
+		E8EBE3652452B87500DE9C43 /* AdNeighborInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdNeighborInfoView.swift; sourceTree = "<group>"; };
+		E8EBE3672452B9FF00DE9C43 /* AdContributionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdContributionListView.swift; sourceTree = "<group>"; };
+		E8EBE3692452BA2000DE9C43 /* AdSupportListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdSupportListView.swift; sourceTree = "<group>"; };
 		E8FFBA93244F24F700FE19D0 /* MyChurch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyChurch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FFBA96244F24F700FE19D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8FFBA98244F24F700FE19D0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,8 +141,13 @@
 		E8EBE3562451A0EE00DE9C43 /* ViewSource */ = {
 			isa = PBXGroup;
 			children = (
-				E8EBE3592451A7A700DE9C43 /* SermonSequenceView.swift */,
-				E8EBE35B2451A85A00DE9C43 /* SermonSequence.xib */,
+				E8EBE3612452AD2100DE9C43 /* SermonSequenceView.swift */,
+				E8EBE35D245275E000DE9C43 /* SermonTextView.swift */,
+				E8EBE35F24529E9100DE9C43 /* SermonColumnView.swift */,
+				E8EBE3632452B85D00DE9C43 /* AdChurchInfoView.swift */,
+				E8EBE3652452B87500DE9C43 /* AdNeighborInfoView.swift */,
+				E8EBE3672452B9FF00DE9C43 /* AdContributionListView.swift */,
+				E8EBE3692452BA2000DE9C43 /* AdSupportListView.swift */,
 			);
 			path = ViewSource;
 			sourceTree = "<group>";
@@ -316,7 +331,6 @@
 			files = (
 				E8FFBAA3244F24F900FE19D0 /* LaunchScreen.storyboard in Resources */,
 				E8FFBAC7244F255E00FE19D0 /* GoogleService-Info.plist in Resources */,
-				E8EBE35C2451A85A00DE9C43 /* SermonSequence.xib in Resources */,
 				E8FFBAA0244F24F900FE19D0 /* Assets.xcassets in Resources */,
 				E8FFBA9E244F24F700FE19D0 /* Main.storyboard in Resources */,
 			);
@@ -447,13 +461,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8A6E4CA24501CE500F6DEED /* CustomSegmentedControl.swift in Sources */,
+				E8EBE3662452B87500DE9C43 /* AdNeighborInfoView.swift in Sources */,
+				E8EBE36A2452BA2000DE9C43 /* AdSupportListView.swift in Sources */,
+				E8EBE3682452B9FF00DE9C43 /* AdContributionListView.swift in Sources */,
 				E8FFBACC244FBEE800FE19D0 /* SermonViewController.swift in Sources */,
+				E8EBE36024529E9100DE9C43 /* SermonColumnView.swift in Sources */,
 				E8FFBACE244FBF0B00FE19D0 /* AdViewController.swift in Sources */,
-				E8EBE35A2451A7A700DE9C43 /* SermonSequenceView.swift in Sources */,
+				E8EBE3642452B85D00DE9C43 /* AdChurchInfoView.swift in Sources */,
 				E8FFBA97244F24F700FE19D0 /* AppDelegate.swift in Sources */,
+				E8EBE3622452AD2100DE9C43 /* SermonSequenceView.swift in Sources */,
 				E8FFBAD0244FBF1A00FE19D0 /* MoreViewController.swift in Sources */,
 				E8FFBA99244F24F700FE19D0 /* SceneDelegate.swift in Sources */,
 				E8FFBACA244FBED200FE19D0 /* MainViewController.swift in Sources */,
+				E8EBE35E245275E000DE9C43 /* SermonTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

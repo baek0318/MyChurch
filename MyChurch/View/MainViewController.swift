@@ -21,22 +21,22 @@ class MainViewController : UIViewController {
           switch UIScreen.main.nativeBounds.height {
             case 1136:
             print("iPhone se")
-            navigationController?.navigationBar.prefersLargeTitles = false
+            self.navigationController?.navigationBar.prefersLargeTitles = true
             case 1334:
             print("iPhone 6/6S/7/8")
-            navigationController?.navigationBar.prefersLargeTitles = false
+            self.navigationController?.navigationBar.prefersLargeTitles = true
             case 2208:
             print("iPhone 6+/6S+/7+/8+")
-            navigationController?.navigationBar.prefersLargeTitles = false
+            self.navigationController?.navigationBar.prefersLargeTitles = true
             case 2436:
             print("iPhone X")
-            navigationController?.navigationBar.prefersLargeTitles = true
+            self.navigationController?.navigationBar.prefersLargeTitles = true
             case 2688:
             print("iPhone 11pro Max")
-            navigationController?.navigationBar.prefersLargeTitles = true
+            self.navigationController?.navigationBar.prefersLargeTitles = true
             case 1792:
             print("iPhone 11/Xr")
-            navigationController?.navigationBar.prefersLargeTitles = true
+            self.navigationController?.navigationBar.prefersLargeTitles = true
             default:
             print("unknown")
           }

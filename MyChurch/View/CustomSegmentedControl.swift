@@ -8,21 +8,41 @@
 
 import UIKit
 
+protocol CustomSegmentedControlDelegate {
+    func pageChange(index : Int)
+}
+
 class CustomSegmentedControl : UIView {
     //필요한 모델들의 변수를 선언하여 준다
     private var buttonTitles : [String]!
     private var buttons : [UIButton]!
     private var selectorView : UIView!
     
+    var delegate : CustomSegmentedControlDelegate?
     
     //글자의 원래 색과 선택되었을때의 view와 글자의 색상을 바꿔준다
-    var textColor : UIColor = .black
+    var selectedIndex : Int = 0
+    var textColor : UIColor!
     @IBInspectable var selectorViewColor : UIColor = .init(red: CGFloat(0.2), green: CGFloat(0.44), blue: CGFloat(0.878), alpha: 1.0)
     @IBInspectable var selectorTextColor : UIColor = .init(red: CGFloat(0.2), green: CGFloat(0.44), blue: CGFloat(0.878), alpha: 1.0)
     
-    convenience init(frame: CGRect,buttonTitle:[String]){
-        self.init(frame:frame)
+    convenience init(buttonTitle:[String]){
+        self.init()
         self.buttonTitles = buttonTitle
+        checkmode()
+    }
+    
+    //다크모드 체크
+    func checkmode() {
+        if #available(iOS 12.0, *) {
+            if traitCollection.userInterfaceStyle == .dark {
+                textColor = .white
+            }else {
+                textColor = .black
+            }
+        } else {
+            print("이모델은 13버전 이하 버전입니다")
+        }
     }
     
     //stack뷰를 구성하는을 설정해주고 레이아웃을 잡아주는 단계
@@ -37,12 +57,14 @@ class CustomSegmentedControl : UIView {
         stack.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         stack.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         stack.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        delegate?.pageChange(index: selectedIndex)
     }
     
     //selectorView 만들어주는 곳
     private func configSelectorView() {
         let selectorWidth = self.frame.width/CGFloat(buttonTitles.count)
-        selectorView = UIView(frame: CGRect(x: 0, y: self.frame.height+10, width: selectorWidth, height: 3))
+        let presentPointX = frame.width/CGFloat(buttonTitles.count)*CGFloat(selectedIndex)
+        selectorView = UIView(frame: CGRect(x: presentPointX, y: self.frame.height+10, width: selectorWidth, height: 3))
         selectorView.backgroundColor = selectorViewColor
         addSubview(selectorView)
     }
@@ -59,20 +81,21 @@ class CustomSegmentedControl : UIView {
             button.setTitleColor(textColor, for: .normal)
             buttons.append(button)
         }
-        buttons[0].setTitleColor(selectorTextColor, for: .normal)
+        buttons[self.selectedIndex].setTitleColor(selectorTextColor, for: .normal)
     }
     
     //button의 액션을 정의해 주는 곳
     @objc func buttonAction(sender:UIButton) {
         for (buttonIndex, btn) in buttons.enumerated() {
             btn.setTitleColor(textColor, for: .normal)
-            if btn == sender {
+            if btn == sender  {
+                selectedIndex = buttonIndex
+                delegate?.pageChange(index: selectedIndex)
                 let selectorPosition = frame.width/CGFloat(buttonTitles.count)*CGFloat(buttonIndex)
-                UIView.animate(withDuration: 0.3) {
+                UIView.animate(withDuration: 0.2) {
                     self.selectorView.frame.origin.x = selectorPosition
                 }
                 btn.setTitleColor(selectorTextColor, for: .normal)
-                
             }
         }
     }
@@ -87,7 +110,8 @@ class CustomSegmentedControl : UIView {
     //
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = UIColor.clear
         updateView()
     }
 }
+
