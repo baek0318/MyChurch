@@ -11,10 +11,17 @@ import UIKit
 class MoreViewController : UIViewController {
     
     @IBOutlet weak var tableview: UITableView!
+    var list = [MoreList]()
+    let morelist = ["차량운행","선교현황","목장안내","교회위치"]
     
     override func viewDidLoad() {
         searchDevice()
+        self.tableview.delegate = self
+        self.tableview.dataSource = self
         navigationItem.largeTitleDisplayMode = .automatic
+        for i in 0..<morelist.count {
+            list.append(MoreList(title: morelist[i]))
+        }
     }
     
     func searchDevice() {
@@ -45,3 +52,20 @@ class MoreViewController : UIViewController {
     }
 }
 
+extension MoreViewController : UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return list.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let row = self.list[indexPath.row]
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! TableViewCell
+        
+        cell.title.text = row.title
+        //cell.icon.image = row.image
+        
+        return cell
+    }
+}

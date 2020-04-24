@@ -15,7 +15,7 @@ class SermonSequenceView : UIView {
     }
     
     func makeScrollView() {
-        let scrollview = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height+200))
+        let scrollview = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
         scrollview.backgroundColor = .clear
         self.addSubview(scrollview)
     }
