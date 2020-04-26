@@ -13,14 +13,35 @@ class SermonViewController : UIViewController {
     
     let codeSegmented = CustomSegmentedControl( buttonTitle: ["예배순서","텍스트 설교","칼럼"])
     var sermonTextView : SermonTextView!
-    var sermonColumn : SermonColumnView!
-    var sermonSequence : SermonSequenceView!
+    var sermonColumnView : SermonColumnView!
+    var sermonSequenceView : SermonSequenceView!
+    var scrollview: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         codeSegmented.delegate = self
         searchDevice()
+        makeScrollView()
+        scrollview.delegate = self
         navigationItem.largeTitleDisplayMode = .automatic
+        
+    }
+    
+    func makeScrollView() {
+        scrollview = UIScrollView()
+        scrollview.isPagingEnabled = true
+        scrollview.showsHorizontalScrollIndicator = false
+        scrollview.bounces = false
+        self.view.addSubview(scrollview)
+        scrollview.translatesAutoresizingMaskIntoConstraints = false
+        scrollview.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
+        scrollview.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        scrollview.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        scrollview.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        scrollview.contentSize.width = self.view.frame.width*3
+        sermonSequence(xPosition: 0)
+        sermonText(xPosition: self.view.frame.width)
+        sermonColumn(xPosition: self.view.frame.width*2)
     }
     
     func segmented(height : CGFloat) {
@@ -33,25 +54,41 @@ class SermonViewController : UIViewController {
         codeSegmented.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
     }
     
+    func sermonSequence(xPosition : CGFloat) {
+        sermonSequenceView = SermonSequenceView(frame: CGRect(x: xPosition, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        sermonSequenceView.tag = 100
+        scrollview.addSubview(sermonSequenceView)
+    }
+    func sermonText(xPosition : CGFloat) {
+        sermonTextView = SermonTextView(frame: CGRect(x: xPosition, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        sermonTextView.tag = 101
+        scrollview.addSubview(sermonTextView)
+    }
+    func sermonColumn(xPosition : CGFloat) {
+        sermonColumnView = SermonColumnView(frame: CGRect(x: xPosition, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        sermonColumnView.tag = 102
+        scrollview.addSubview(sermonColumnView)
+    }
+    
     func searchDevice() {
         if UIDevice().userInterfaceIdiom == .phone {
           switch UIScreen.main.nativeBounds.height {
             case 1136:
             print("iPhone se")
             navigationController?.navigationBar.prefersLargeTitles = false
-            segmented(height: -(self.view.frame.height-135))
+            segmented(height: -(self.view.frame.height-145))
             case 1334:
             print("iPhone 6/6S/7/8")
             navigationController?.navigationBar.prefersLargeTitles = false
-            segmented(height: -(self.view.frame.height-135))
+            segmented(height: -(self.view.frame.height-145))
             case 2208:
             print("iPhone 6+/6S+/7+/8+")
             navigationController?.navigationBar.prefersLargeTitles = false
-            segmented(height: -(self.view.frame.height-135))
+            segmented(height: -(self.view.frame.height-145))
             case 2436:
             print("iPhone X")
             navigationController?.navigationBar.prefersLargeTitles = true
-            segmented(height: -560)
+            segmented(height: -550)
             case 2688:
             print("iPhone 11pro Max")
             navigationController?.navigationBar.prefersLargeTitles = true
@@ -65,58 +102,40 @@ class SermonViewController : UIViewController {
           }
         }
     }
+    
 }
 
 extension SermonViewController : CustomSegmentedControlDelegate {
+    
     func pageChange(index: Int) {
         if(index == 0){
-            if let viewtag = self.view.viewWithTag(101) {
-                viewtag.removeFromSuperview()
-            }
-            if let viewtag = self.view.viewWithTag(102){
-                viewtag.removeFromSuperview()
-            }
-            sermonSequence = SermonSequenceView(frame: CGRect(x: 0, y: 190, width: self.view.frame.width, height: self.view.frame.height))
-            sermonSequence.tag = 100
-            self.view.addSubview(sermonSequence)
-            sermonSequence.translatesAutoresizingMaskIntoConstraints = false
-            sermonSequence.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
-            sermonSequence.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-            sermonSequence.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-            sermonSequence.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+           scrollview.contentOffset.x = self.view.frame.width*0
         }
         else if(index == 1){
-            if let viewtag = self.view.viewWithTag(100){
-                viewtag.removeFromSuperview()
-            }
-            if let viewtag = self.view.viewWithTag(102){
-                viewtag.removeFromSuperview()
-            }
-            sermonTextView = SermonTextView(frame: CGRect(x: 0, y: 190, width: self.view.frame.width, height: self.view.frame.height))
-            sermonTextView.tag = 101
-            self.view.addSubview(sermonTextView)
-            sermonTextView.translatesAutoresizingMaskIntoConstraints = false
-            sermonTextView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
-            sermonTextView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-            sermonTextView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-            sermonTextView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+           scrollview.contentOffset.x = self.view.frame.width*1
         }
         else if(index == 2){
-            if let viewtag = self.view.viewWithTag(100){
-                viewtag.removeFromSuperview()
-            }
-            if let viewtag = self.view.viewWithTag(101){
-                viewtag.removeFromSuperview()
-            }
-            sermonColumn = SermonColumnView(frame: CGRect(x: 0, y: 190, width: self.view.frame.width, height: self.view.frame.height))
-            sermonColumn.tag = 102
-            self.view.addSubview(sermonColumn)
-            sermonColumn.translatesAutoresizingMaskIntoConstraints = false
-            sermonColumn.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
-            sermonColumn.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-            sermonColumn.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-            sermonColumn.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+           scrollview.contentOffset.x = self.view.frame.width*2
         }
     }
     
+}
+
+extension SermonViewController : UIScrollViewDelegate {
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if scrollview.contentOffset.x == 0 {
+            print(scrollView.contentOffset.x)
+        }
+        else if scrollview.contentOffset.x == self.view.frame.width*1 {
+            print(scrollView.contentOffset.x)
+        }
+        else if scrollview.contentOffset.x == self.view.frame.width*2 {
+            print(scrollView.contentOffset.x)
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+    }
 }

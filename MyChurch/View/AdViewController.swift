@@ -15,11 +15,13 @@ class AdViewController : UIViewController {
     var adNeighborInfoView : AdNeighborInfoView!
     var adContributionListView : AdContributionListView!
     var adSupportListView : AdSupportListView!
+    var scrollview : UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         codeSegmented.delegate = self
         searchDevice()
+        makeScrollView()
         navigationItem.largeTitleDisplayMode = .automatic
     }
     
@@ -34,25 +36,64 @@ class AdViewController : UIViewController {
 
     }
     
+    func makeScrollView() {
+        scrollview = UIScrollView()
+        scrollview.isPagingEnabled = true
+        scrollview.showsHorizontalScrollIndicator = false
+        scrollview.bounces = false
+        self.view.addSubview(scrollview)
+        scrollview.translatesAutoresizingMaskIntoConstraints = false
+        scrollview.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
+        scrollview.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        scrollview.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        scrollview.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        scrollview.contentSize.width = self.view.frame.width*4
+        adChurchInfo(xPosition: 0)
+        adNeighborInfo(xPosition: self.view.frame.width)
+        adContributionList(xPosition: self.view.frame.width*2)
+        adSupportList(xPosition : self.view.frame.width*3)
+    }
+    
+    func adChurchInfo(xPosition : CGFloat){
+        adChurchInfoView = AdChurchInfoView(frame: CGRect(x: xPosition, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        adChurchInfoView.tag = 100
+        scrollview.addSubview(adChurchInfoView)
+    }
+    func adNeighborInfo(xPosition : CGFloat){
+        adNeighborInfoView = AdNeighborInfoView(frame: CGRect(x: xPosition, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        adNeighborInfoView.tag = 101
+        scrollview.addSubview(adNeighborInfoView)
+    }
+    func adContributionList(xPosition : CGFloat){
+        adContributionListView = AdContributionListView(frame: CGRect(x: xPosition, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        adContributionListView.tag = 102
+        scrollview.addSubview(adContributionListView)
+    }
+    func adSupportList(xPosition : CGFloat){
+        adSupportListView = AdSupportListView(frame: CGRect(x: xPosition, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        adSupportListView.tag = 102
+        scrollview.addSubview(adSupportListView)
+    }
+    
     func searchDevice() {
         if UIDevice().userInterfaceIdiom == .phone {
           switch UIScreen.main.nativeBounds.height {
             case 1136:
             print("iPhone se")
             navigationController?.navigationBar.prefersLargeTitles = false
-            segmented(height: -(self.view.frame.height-135))
+            segmented(height: -(self.view.frame.height-145))
             case 1334:
             print("iPhone 6/6S/7/8")
             navigationController?.navigationBar.prefersLargeTitles = false
-            segmented(height: -(self.view.frame.height-135))
+            segmented(height: -(self.view.frame.height-145))
             case 2208:
             print("iPhone 6+/6S+/7+/8+")
             navigationController?.navigationBar.prefersLargeTitles = false
-            segmented(height: -(self.view.frame.height-135))
+            segmented(height: -(self.view.frame.height-145))
             case 2436:
             print("iPhone X")
             navigationController?.navigationBar.prefersLargeTitles = true
-            segmented(height: -560)
+            segmented(height: -550)
             case 2688:
             print("iPhone 11pro Max")
             navigationController?.navigationBar.prefersLargeTitles = true
@@ -66,85 +107,22 @@ class AdViewController : UIViewController {
           }
         }
     }
+
 }
 
 extension AdViewController : CustomSegmentedControlDelegate {
     func pageChange(index: Int) {
         if(index == 0){
-            if let viewtag = self.view.viewWithTag(101) {
-                viewtag.removeFromSuperview()
-            }
-            if let viewtag = self.view.viewWithTag(102){
-                viewtag.removeFromSuperview()
-            }
-            if let viewtag = self.view.viewWithTag(103){
-                viewtag.removeFromSuperview()
-            }
-            adChurchInfoView = AdChurchInfoView(frame: CGRect(x: 0, y: 190, width: self.view.frame.width, height: self.view.frame.height))
-            adChurchInfoView.tag = 100
-            self.view.addSubview(adChurchInfoView)
-            adChurchInfoView.translatesAutoresizingMaskIntoConstraints = false
-            adChurchInfoView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
-            adChurchInfoView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-            adChurchInfoView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-            adChurchInfoView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+            scrollview.contentOffset.x = self.view.frame.width*0
         }
         else if(index == 1){
-            if let viewtag = self.view.viewWithTag(100){
-                viewtag.removeFromSuperview()
-            }
-            if let viewtag = self.view.viewWithTag(102){
-                viewtag.removeFromSuperview()
-            }
-            if let viewtag = self.view.viewWithTag(103){
-                viewtag.removeFromSuperview()
-            }
-            adNeighborInfoView = AdNeighborInfoView(frame: CGRect(x: 0, y: 190, width: self.view.frame.width, height: self.view.frame.height))
-            adNeighborInfoView.tag = 101
-            self.view.addSubview(adNeighborInfoView)
-            adNeighborInfoView.translatesAutoresizingMaskIntoConstraints = false
-            adNeighborInfoView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
-            adNeighborInfoView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-            adNeighborInfoView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-            adNeighborInfoView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+            scrollview.contentOffset.x = self.view.frame.width*1
         }
         else if(index == 2){
-            if let viewtag = self.view.viewWithTag(100){
-                viewtag.removeFromSuperview()
-            }
-            if let viewtag = self.view.viewWithTag(101){
-                viewtag.removeFromSuperview()
-            }
-            if let viewtag = self.view.viewWithTag(103){
-                viewtag.removeFromSuperview()
-            }
-            adContributionListView = AdContributionListView(frame: CGRect(x: 0, y: 190, width: self.view.frame.width, height: self.view.frame.height))
-            adContributionListView.tag = 102
-            self.view.addSubview(adContributionListView)
-            adContributionListView.translatesAutoresizingMaskIntoConstraints = false
-            adContributionListView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
-            adContributionListView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-            adContributionListView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-            adContributionListView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+            scrollview.contentOffset.x = self.view.frame.width*2
         }
         else if(index == 3){
-            if let viewtag = self.view.viewWithTag(100){
-                viewtag.removeFromSuperview()
-            }
-            if let viewtag = self.view.viewWithTag(101){
-                viewtag.removeFromSuperview()
-            }
-            if let viewtag = self.view.viewWithTag(102){
-                viewtag.removeFromSuperview()
-            }
-            adSupportListView = AdSupportListView(frame: CGRect(x: 0, y: 190, width: self.view.frame.width, height: self.view.frame.height))
-            adSupportListView.tag = 103
-            self.view.addSubview(adSupportListView)
-            adSupportListView.translatesAutoresizingMaskIntoConstraints = false
-            adSupportListView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
-            adSupportListView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-            adSupportListView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-            adSupportListView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+            scrollview.contentOffset.x = self.view.frame.width*3
         }
     }
     
