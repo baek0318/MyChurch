@@ -87,7 +87,7 @@ class MainViewController : UIViewController {
     
     func createImageView() {
         imageview = .init(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        imageview.image = UIImage(named: "flower")
+        imageview.image = UIImage(named: "church")
         imageview.layer.cornerRadius = CGFloat(20)
         imageview.layer.masksToBounds = true
         self.mainView.addSubview(imageview)

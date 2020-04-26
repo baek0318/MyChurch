@@ -14,10 +14,15 @@ class AdSupportListView : UIView {
         self.init()
     }
     
+    
     func makeScrollView() {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 50))
+        label.text = "예배도우미"
+        label.font = .boldSystemFont(ofSize: 50)
         let scrollview = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
         scrollview.backgroundColor = .clear
         self.addSubview(scrollview)
+        scrollview.addSubview(label)
     }
     
     override func draw(_ rect: CGRect) {

@@ -22,27 +22,13 @@ class CustomSegmentedControl : UIView {
     
     //글자의 원래 색과 선택되었을때의 view와 글자의 색상을 바꿔준다
     var selectedIndex : Int = 0
-    var textColor : UIColor!
+    var textColor : UIColor! = UIColor(named: "darkmode")
     @IBInspectable var selectorViewColor : UIColor = .init(red: CGFloat(0.2), green: CGFloat(0.44), blue: CGFloat(0.878), alpha: 1.0)
     @IBInspectable var selectorTextColor : UIColor = .init(red: CGFloat(0.2), green: CGFloat(0.44), blue: CGFloat(0.878), alpha: 1.0)
     
     convenience init(buttonTitle:[String]){
         self.init()
         self.buttonTitles = buttonTitle
-        checkmode()
-    }
-    
-    //다크모드 체크
-    func checkmode() {
-        if #available(iOS 12.0, *) {
-            if traitCollection.userInterfaceStyle == .dark {
-                textColor = .white
-            }else {
-                textColor = .black
-            }
-        } else {
-            print("이모델은 13버전 이하 버전입니다")
-        }
     }
     
     //stack뷰를 구성하는을 설정해주고 레이아웃을 잡아주는 단계
@@ -100,6 +86,15 @@ class CustomSegmentedControl : UIView {
         }
     }
     
+    func selectorAction() {
+        //버튼에 색깔을 넣어주는 행위
+        buttons[self.selectedIndex].setTitleColor(selectorTextColor, for: .normal)
+        
+        //바를 옮겨주는 행위
+        let selectorPosition = frame.width/CGFloat(buttonTitles.count)*CGFloat(1)
+        self.selectorView.frame.origin.x = selectorPosition
+    }
+    
     //view 업데이트 하는곳
     private func updateView() {
         createButton()
@@ -110,7 +105,7 @@ class CustomSegmentedControl : UIView {
     //
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = .clear
         updateView()
     }
 }
